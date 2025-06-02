@@ -1,47 +1,54 @@
-// inputNode.js
+// /frontend/src/nodes/inputNode.js
+
 
 import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Position } from 'reactflow';
+import { BaseNode } from './BaseNode';          
+import { useStore } from '../store';           
 
 export const InputNode = ({ id, data }) => {
-  const [currName, setCurrName] = useState(data?.inputName || id.replace('customInput-', 'input_'));
-  const [inputType, setInputType] = useState(data.inputType || 'Text');
+  const { updateNodeField } = useStore();
+  const [name, setName]   = useState(data?.inputName || id.replace('customInput-', 'input_'));
+  const [type, setType]   = useState(data?.inputType || 'Text');
 
-  const handleNameChange = (e) => {
-    setCurrName(e.target.value);
+  const onNameChange = (e) => {
+    const v = e.target.value;
+    setName(v);
+    updateNodeField(id, 'inputName', v);
   };
 
-  const handleTypeChange = (e) => {
-    setInputType(e.target.value);
+  const onTypeChange = (e) => {
+    const v = e.target.value;
+    setType(v);
+    updateNodeField(id, 'inputType', v);
+  };
+
+  const handles = {
+    targets: [],
+    sources: [
+      { id: `${id}-value`, position: Position.Right, y: '50%' },
+    ],
   };
 
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <div>
-        <span>Input</span>
-      </div>
-      <div>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
-          />
-        </label>
-        <label>
-          Type:
-          <select value={inputType} onChange={handleTypeChange}>
-            <option value="Text">Text</option>
-            <option value="File">File</option>
-          </select>
-        </label>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-value`}
-      />
-    </div>
+    <BaseNode id={id} title="Input" handles={handles}>
+      <label className="node-field">
+        Name
+        <input
+          className="node-input"
+          type="text"
+          value={name}
+          onChange={onNameChange}
+        />
+      </label>
+
+      <label className="node-field">
+        Type
+        <select className="node-input" value={type} onChange={onTypeChange}>
+          <option value="Text">Text</option>
+          <option value="File">File</option>
+        </select>
+      </label>
+    </BaseNode>
   );
-}
+};
