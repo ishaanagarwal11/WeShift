@@ -1,5 +1,3 @@
-// /frontend/src/nodes/outputNode.js
-
 import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -7,8 +5,8 @@ import { useStore } from '../store';
 
 export const OutputNode = ({ id, data }) => {
   const { updateNodeField } = useStore();
-  const [name, setName]   = useState(data?.outputName || id.replace('customOutput-', 'output_'));
-  const [type, setType]   = useState(data?.outputType || 'Text');
+  const [name, setName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
+  const [type, setType] = useState(data?.outputType || 'Text');
 
   const onNameChange = (e) => {
     const v = e.target.value;
@@ -24,26 +22,47 @@ export const OutputNode = ({ id, data }) => {
 
   const handles = {
     targets: [
-      { id: `${id}-value`, position: Position.Left, y: '50%' },
+      { id: `${id}-value`, position: Position.Left, y: '55%' },
     ],
     sources: [],
   };
 
   return (
     <BaseNode id={id} title="Output" handles={handles}>
-      <label className="node-field">
+      <label className="flex flex-col text-xs font-semibold mb-2 text-purple-900 dark:text-purple-100">
         Name
         <input
-          className="node-input"
+          className="
+            mt-1 px-2 py-1 rounded-md
+            bg-white/70 dark:bg-white/20
+            border border-purple-300/40 dark:border-purple-400/40
+            text-purple-900 dark:text-white
+            placeholder:text-purple-300 dark:placeholder:text-purple-200
+            focus:outline-none focus:ring-2 focus:ring-purple-400
+            shadow-[0_0_6px_0_rgba(127,63,255,0.10)] dark:shadow-[0_0_6px_0_rgba(127,63,255,0.18)]
+            transition
+          "
           type="text"
           value={name}
           onChange={onNameChange}
+          placeholder="Output name"
         />
       </label>
-
-      <label className="node-field">
+      <label className="flex flex-col text-xs font-semibold text-purple-900 dark:text-purple-100">
         Type
-        <select className="node-input" value={type} onChange={onTypeChange}>
+        <select
+          className="
+            mt-1 px-2 py-1 rounded-md
+            bg-white/70 dark:bg-white/20
+            border border-purple-300/40 dark:border-purple-400/40
+            text-purple-900 dark:text-white
+            focus:outline-none focus:ring-2 focus:ring-purple-400
+            shadow-[0_0_6px_0_rgba(127,63,255,0.06)] dark:shadow-[0_0_6px_0_rgba(127,63,255,0.13)]
+            transition
+          "
+          value={type}
+          onChange={onTypeChange}
+        >
           <option value="Text">Text</option>
           <option value="File">Image</option>
         </select>

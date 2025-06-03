@@ -1,13 +1,9 @@
-// ui.js 
-
-
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 
-import nodeTypes from './nodes'; 
-
+import nodeTypes from './nodes';
 import 'reactflow/dist/style.css';
 
 const gridSize = 20;
@@ -36,6 +32,17 @@ export const PipelineUI = () => {
     onConnect
   } = useStore(selector, shallow);
 
+  // --- Detect dark mode from system ---
+  const [isDark, setIsDark] = useState(() =>
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  );
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = (e) => setIsDark(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
   const getInitNodeData = (nodeID, type) => {
     let nodeData = { id: nodeID, nodeType: `${type}` };
     return nodeData;
@@ -62,7 +69,7 @@ export const PipelineUI = () => {
         const nodeID = getNodeID(type);
         const newNode = {
           id: nodeID,
-          type,                         
+          type,
           position,
           data: getInitNodeData(nodeID, type),
         };
@@ -79,28 +86,48 @@ export const PipelineUI = () => {
   }, []);
 
   return (
-    <>
-      <div ref={reactFlowWrapper} style={{ width: '100wv', height: '70vh' }}>
-        <ReactFlow
-            key={edges.length}
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          onDrop={onDrop}
-          onDragOver={onDragOver}
-          onInit={setReactFlowInstance}
-          nodeTypes={nodeTypes}         
-          proOptions={proOptions}
-          snapGrid={[gridSize, gridSize]}
-          connectionLineType='smoothstep'
-        >
-          <Background color="#aaa" gap={gridSize} />
-          <Controls />
-          <MiniMap />
-        </ReactFlow>
-      </div>
-    </>
+    <div
+      ref={reactFlowWrapper}
+      className={`
+        w-full max-w-[1600px] h-[70vh] mx-auto
+        rounded-3xl
+        shadow-2xl
+        border border-purple-200/30 dark:border-purple-900/30
+        bg-white/60 dark:bg-black/30
+        backdrop-blur-md
+        transition-all
+        flex flex-col
+        relative
+      `}
+      style={{
+        boxShadow:
+          '0 0 80px 0 rgba(130,70,255,0.13), 0 2px 8px 0 rgba(30,20,50,0.10)',
+      }}
+    >
+      <ReactFlow
+        key={edges.length}
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        onDrop={onDrop}
+        onDragOver={onDragOver}
+        onInit={setReactFlowInstance}
+        nodeTypes={nodeTypes}
+        proOptions={proOptions}
+        snapGrid={[gridSize, gridSize]}
+        connectionLineType="smoothstep"
+      >
+        {/* One Background, dynamically colored for dark/light mode */}
+        <Background
+          color={isDark ? "#b7aaaa" : "#302568"}
+          gap={gridSize}
+          variant="dots"
+        />
+        <Controls />
+        <MiniMap />
+      </ReactFlow>
+    </div>
   );
 };

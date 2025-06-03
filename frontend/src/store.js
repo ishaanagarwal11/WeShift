@@ -52,11 +52,12 @@ onConnect: ({ source, sourceHandle, target, targetHandle }) => {
       targetHandle,
       type: "smoothstep",
       animated: true,
+      style: { stroke: "#a855f7", strokeWidth: 1 },
       markerEnd: {
-        type: MarkerType.Arrow,
+        type: "arrowclosed",
         width: 20,
         height: 20,
-      },
+        color: "#a855f7",}
     }, get().edges),
   });
 },
