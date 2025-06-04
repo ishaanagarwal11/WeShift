@@ -39,7 +39,6 @@ def parse_pipeline(data: PipelineData) -> dict:
     num_nodes = len(data.nodes)
     num_edges = len(data.edges)
 
-    # Build adjacency list and in-degree table
     adjacency = defaultdict(list)
     in_degree = {node.id: 0 for node in data.nodes}
 

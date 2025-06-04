@@ -22,7 +22,7 @@ export const PipelineToolbar = () => {
         backdropFilter: 'blur(16px)'
       }}
     >
-      <span className="font-bold text-purple-900 dark:text-purple-100 text-base tracking-wide pr-3 select-none opacity-80">
+      <span className="font text-purple-900 dark:text-purple-100 text-base tracking-wide pr-3 select-none opacity-80">
         VectorShift
       </span>
       <DraggableNode type='inputNode' label='Input' />

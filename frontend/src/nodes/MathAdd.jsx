@@ -36,7 +36,7 @@ export function MathAdd({ id, data }) {
       }}
     >
       <div className="flex flex-col gap-2">
-        <label className="flex items-center text-xs font-semibold text-purple-900 dark:text-purple-100">
+        <label className="flex items-center text-xs font text-purple-900 dark:text-purple-100">
           A:&nbsp;
           <input
             type="number"

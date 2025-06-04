@@ -1,12 +1,9 @@
-// store.js
-
 import { createWithEqualityFn } from 'zustand/traditional';
 import {
-  addEdge,
   applyNodeChanges,
   applyEdgeChanges,
   MarkerType,
-} from "reactflow";
+} from 'reactflow';
 
 export const useStore = createWithEqualityFn((set, get) => ({
   nodes: [],
@@ -24,49 +21,59 @@ export const useStore = createWithEqualityFn((set, get) => ({
   },
 
   addNode: (node) => {
-    set({
-      nodes: [...get().nodes, node],
-    });
+    set({ nodes: [...get().nodes, node] });
   },
 
   onNodesChange: (changes) => {
-    set({
-      nodes: applyNodeChanges(changes, get().nodes),
-    });
+    set({ nodes: applyNodeChanges(changes, get().nodes) });
   },
 
   onEdgesChange: (changes) => {
-    set({
-      edges: applyEdgeChanges(changes, get().edges),
-    });
+    set({ edges: applyEdgeChanges(changes, get().edges) });
   },
 
-onConnect: ({ source, sourceHandle, target, targetHandle }) => {
-  const edgeId = `${sourceHandle}-${targetHandle}`;
-  set({
-    edges: addEdge({
+  setEdges: (newEdges) => {
+    set({ edges: newEdges });
+  },
+
+  onConnect: ({ source, sourceHandle, target, targetHandle }) => {
+    const edgeId = `${sourceHandle}-${targetHandle}`;
+
+    const newEdge = {
       id: edgeId,
       source,
       sourceHandle,
       target,
       targetHandle,
-      type: "smoothstep",
+      type: 'smoothstep',
       animated: true,
-      style: { stroke: "#a855f7", strokeWidth: 1 },
+      style: { stroke: '#a855f7', strokeWidth: 1 },
       markerEnd: {
-        type: "arrowclosed",
+        type: MarkerType.ArrowClosed,
         width: 20,
         height: 20,
-        color: "#a855f7",}
-    }, get().edges),
-  });
-},
+        color: '#a855f7',
+      },
+    };
+
+    const existingEdge = get().edges.find((e) => e.id === edgeId);
+
+    if (!existingEdge) {
+      set({ edges: [...get().edges, newEdge] });
+    }
+  },
 
   updateNodeField: (nodeId, fieldName, fieldValue) => {
     set({
       nodes: get().nodes.map((node) => {
         if (node.id === nodeId) {
-          node.data = { ...node.data, [fieldName]: fieldValue };
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              [fieldName]: fieldValue,
+            },
+          };
         }
         return node;
       }),
@@ -74,6 +81,6 @@ onConnect: ({ source, sourceHandle, target, targetHandle }) => {
   },
 }));
 
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   window.store = useStore;
 }

@@ -26,7 +26,7 @@ export function Webhook({ id, data }) {
         sources: [],
       }}
     >
-      <label className="flex flex-col text-xs font-semibold text-purple-900 dark:text-purple-100">
+      <label className="flex flex-col text-xs font text-purple-900 dark:text-purple-100">
         <span>POST to</span>
         <input
           type="text"

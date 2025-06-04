@@ -28,7 +28,7 @@ export function Delay({ id, data }) {
         ],
       }}
     >
-      <div className="flex items-center text-purple-900 dark:text-purple-100 font-semibold">
+      <div className="flex items-center text-purple-900 dark:text-purple-100 font">
         <span></span>
         <input
           type="number"

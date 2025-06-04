@@ -28,7 +28,7 @@ export function Filter({ id, data }) {
         ],
       }}
     >
-      <label className="flex flex-col text-xs font-semibold text-purple-900 dark:text-purple-100">
+      <label className="flex flex-col text-xs font text-purple-900 dark:text-purple-100">
         <span>Keep if contains</span>
         <input
           type="text"

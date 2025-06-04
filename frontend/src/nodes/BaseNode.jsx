@@ -34,9 +34,8 @@ export const BaseNode = ({
         overflow-hidden
       `}
     >
-      {/* Header section */}
       <div className="
-        w-full text-center text-base font-bold
+        w-full text-center text-base font
         text-purple-900 dark:text-white
         py-3
         bg-white/70 dark:bg-[#3a24a7]/50
@@ -45,12 +44,9 @@ export const BaseNode = ({
       ">
         {title}
       </div>
-      {/* Divider */}
       <div className="w-full border-b border-purple-200/60 dark:border-purple-400/40" />
-      {/* Body */}
       <div className="flex-1 p-4">{children}</div>
 
-      {/* Handles with neon */}
       {handles.targets.map((h) => (
         <Handle
           key={h.id}

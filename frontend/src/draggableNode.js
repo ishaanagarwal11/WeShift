@@ -13,7 +13,7 @@ export const DraggableNode = ({ type, label }) => {
         flex flex-col items-center justify-center
         min-w-[90px] h-[48px]
         rounded-xl
-        font-semibold
+        font
         text-sm
         cursor-grab
         transition-all duration-200

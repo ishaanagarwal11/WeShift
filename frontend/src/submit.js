@@ -50,7 +50,7 @@ export const SubmitButton = () => {
           rounded-xl
           bg-gradient-to-br from-purple-400/80 to-purple-700/80
           dark:from-[#4316db]/90 dark:to-[#8057e4]/90
-          text-white font-semibold text-base
+          text-white font text-base
           shadow-[0_2px_24px_0_rgba(127,63,255,0.24)]
           hover:scale-[1.02] hover:shadow-[0_0_36px_10px_rgba(167,98,255,0.24)]
           active:scale-95
@@ -97,13 +97,13 @@ export const SubmitButton = () => {
           <div className="flex flex-row divide-x divide-purple-200/60 dark:divide-purple-900/40">
             <div className="flex-1 flex flex-col items-center py-6">
               <span className="text-lg sm:text-xl mb-2 opacity-70">Nodes</span>
-              <span className="text-4xl font-bold tracking-wider text-purple-900 dark:text-purple-200">
+              <span className="text-4xl font tracking-wider text-purple-900 dark:text-purple-200">
                 {result ? result.numNodes : "--"}
               </span>
             </div>
             <div className="flex-1 flex flex-col items-center py-6">
               <span className="text-lg sm:text-xl mb-2 opacity-70">Edges</span>
-              <span className="text-4xl font-bold tracking-wider text-purple-900 dark:text-purple-200">
+              <span className="text-4xl font tracking-wider text-purple-900 dark:text-purple-200">
                 {result ? result.numEdges : "--"}
               </span>
             </div>

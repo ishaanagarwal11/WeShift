@@ -2,25 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 1. Remove default body margin and set a beautiful modern font stack */
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  background: transparent; /* So gradient from App.js is visible */
+  font-weight: 400;
+  background: transparent;
   color: #24233a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background 0.3s;
 }
 
-/* 2. In dark mode, default text is light */
 .dark body {
   color: #f4efff;
 }
 
-/* 3. Make code snippets look crisp */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   font-size: 0.95em;
@@ -33,12 +31,10 @@ code {
   box-sizing: border-box;
 }
 
-/* 4. Remove focus outline, use ring for focus */
 :focus {
   outline: none;
 }
 
-/* 5. Optional: Add smooth transitions for color/bg everywhere */
 html {
   transition: background-color 0.3s, color 0.3s;
 }

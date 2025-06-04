@@ -29,7 +29,7 @@ export const InputNode = ({ id, data }) => {
 
   return (
     <BaseNode id={id} title="Input" handles={handles}>
-      <label className="flex flex-col text-xs font-semibold mb-2 text-purple-900 dark:text-purple-100">
+      <label className="flex flex-col text-xs font mb-2 text-purple-900 dark:text-purple-100">
         Name
         <input
           className="
@@ -48,7 +48,7 @@ export const InputNode = ({ id, data }) => {
           placeholder="Input name"
         />
       </label>
-      <label className="flex flex-col text-xs font-semibold text-purple-900 dark:text-purple-100">
+      <label className="flex flex-col text-xs font text-purple-900 dark:text-purple-100">
         Type
         <select
           className="

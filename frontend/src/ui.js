@@ -32,7 +32,6 @@ export const PipelineUI = () => {
     onConnect
   } = useStore(selector, shallow);
 
-  // --- Detect dark mode from system ---
   const [isDark, setIsDark] = useState(() =>
     window.matchMedia('(prefers-color-scheme: dark)').matches
   );
@@ -77,7 +76,7 @@ export const PipelineUI = () => {
         addNode(newNode);
       }
     },
-    [reactFlowInstance]
+    [reactFlowInstance, getNodeID, addNode]
   );
 
   const onDragOver = useCallback((event) => {
@@ -119,7 +118,6 @@ export const PipelineUI = () => {
         snapGrid={[gridSize, gridSize]}
         connectionLineType="smoothstep"
       >
-        {/* One Background, dynamically colored for dark/light mode */}
         <Background
           color={isDark ? "#b7aaaa" : "#302568"}
           gap={gridSize}

@@ -25,7 +25,7 @@ export const LLMNode = ({ id, data }) => {
 
   return (
     <BaseNode id={id} title="LLM" handles={handles}>
-      <label className="flex flex-col text-xs font-semibold text-purple-900 dark:text-purple-100 mb-1">
+      <label className="flex flex-col text-xs font text-purple-900 dark:text-purple-100 mb-1">
         Model
         <select
           className="
