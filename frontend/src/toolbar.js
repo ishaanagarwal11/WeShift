@@ -23,7 +23,7 @@ export const PipelineToolbar = () => {
       }}
     >
       <span className="font text-purple-900 dark:text-purple-100 text-base tracking-wide pr-3 select-none opacity-80">
-        VectorShift
+        WeShift
       </span>
       <DraggableNode type='inputNode' label='Input' />
       <DraggableNode type='textNode' label='Text' />

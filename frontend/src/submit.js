@@ -9,7 +9,7 @@ export const SubmitButton = () => {
   const showResult = (res) => {
     setResult(res);
     setError(null);
-    setTimeout(() => setResult(null), 2000);
+    setTimeout(() => setResult(null), 5000);
   };
   const showError = (err) => {
     setResult(null);
